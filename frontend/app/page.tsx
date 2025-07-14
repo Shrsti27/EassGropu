@@ -475,62 +475,35 @@ export default function HomePage() {
       image:
         "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490585/10_ab6mch.jpg",
     },
-    {
-      id: 2,
-      category: "event",
-      title: "Eass Groups",
-      image:
-        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490586/14_e9owds.jpg",
-    },
-    {
-      id: 3,
-      category: "event",
-      title: "Eass Groups",
-      image:
-        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490587/11_akpdbd.jpg",
-    },
-    {
-      id: 4,
-      category: "event",
-      title: "Eass Groups",
-      image:
-        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490585/13_ypvfuh.jpg",
-    },
-    {
+      {
       id: 5,
       category: "event",
       title: "Eass Groups",
       image:
         "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490583/6_nbe4kd.jpg",
     },
-    {
-      id: 6,
-      category: "event",
-      title: "Eass Groups",
-      image:
-        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490584/12_vep9wp.jpg",
-    },
-    {
+      {
       id: 7,
       category: "event",
       title: "Eass Groups",
       image:
         "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490583/9_l3fnzs.jpg",
     },
-    {
+     {
       id: 8,
       category: "event",
       title: "Eass Groups",
       image:
         "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490580/8_wajfxs.jpg",
     },
-    {
-      id: 9,
-      category: "event",
-      title: "Eass Groups",
-      image:
-        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490581/7_ed73ib.jpg",
-    },
+
+    // {
+    //   id: 9,
+    //   category: "event",
+    //   title: "Eass Groups",
+    //   image:
+    //     "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490581/7_ed73ib.jpg",
+    // },
     {
       id: 10,
       category: "event",
@@ -546,6 +519,14 @@ export default function HomePage() {
         "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490580/5_puutmu.jpg",
     },
     {
+      id: 13,
+      category: "event",
+      title: "Eass Groups",
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490572/1_mz1ovo.jpg",
+    },
+    
+    {
       id: 12,
       category: "event",
       title: "Eass Groups",
@@ -553,11 +534,18 @@ export default function HomePage() {
         "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490574/3_ubaxnd.jpg",
     },
     {
-      id: 13,
+      id: 2,
       category: "event",
       title: "Eass Groups",
       image:
-        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490572/1_mz1ovo.jpg",
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490586/14_e9owds.jpg",
+    },
+    {
+      id: 3,
+      category: "event",
+      title: "Eass Groups",
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490587/11_akpdbd.jpg",
     },
     {
       id: 14,
@@ -566,6 +554,25 @@ export default function HomePage() {
       image:
         "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490571/2_jwtlrz.jpg",
     },
+    {
+      id: 4,
+      category: "event",
+      title: "Eass Groups",
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490585/13_ypvfuh.jpg",
+    },
+  
+    {
+      id: 6,
+      category: "event",
+      title: "Eass Groups",
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490584/12_vep9wp.jpg",
+    },
+  
+   
+    
+    
   ];
 
   const filteredGalleryImages =
@@ -1056,7 +1063,7 @@ export default function HomePage() {
               <button
                 key={category.id}
                 onClick={() => setSelectedGalleryCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 border-2 border-gray-400 ${
                   selectedGalleryCategory === category.id
                     ? "bg-gradient-to-r from-orange-400 to-orange-600 text-white"
                     : "bg-slate-700/50 text-gray-300 hover:bg-orange-500/20 hover:text-white border border-slate-600/50"
@@ -1080,7 +1087,7 @@ export default function HomePage() {
                   alt="Eass Group"
                   width={600}
                   height={400}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-4 left-4 right-4">
