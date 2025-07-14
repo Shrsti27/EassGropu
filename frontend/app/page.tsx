@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -25,7 +26,6 @@ import {
   Globe,
   HeadphonesIcon,
   Settings,
-  Star,
   ChevronRight,
   Menu,
   X,
@@ -33,8 +33,6 @@ import {
   ArrowRight,
   PlayCircle,
   ChevronLeft,
-  Quote,
-  Calendar,
   Users2,
   ZoomIn,
 } from "lucide-react";
@@ -43,74 +41,44 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-
-// Slider images
-import banner1 from "@/src/assets/banner1.png";
-import banner2 from "@/src/assets/banner2.png";
-import banner3 from "@/src/assets/banner3 (2).png";
-import banner4 from "@/src/assets/banner4.png";
-
-// Secound secion images
-import secoundsec from "@/src/assets/mm.png";
-
-// Services images
-import gun from "@/src/assets/gun.png";
-import personalBodyGuard from "@/src/assets/BodyGurd.png";
-import housekeeping from "@/src/assets/Housekeeping.png";
-import legalRecovery from "@/src/assets/Legal.png";
-import verificationServices from "@/src/assets/Verification.png";
-import investigation from "@/src/assets/Investigation.png";
-import vip from "@/src/assets/VIP.png";
-import lady from "@/src/assets/Lady.png";
-import bouncer from "@/src/assets/Bouncer.png";
-import Manpower from "@/src/assets/Manpower.png";
-
-// Gallery images
-import id1 from "@/src/assets/1.jpg";
-import id2 from "@/src/assets/2.jpg";
-import id3 from "@/src/assets/3.jpg";
-import id4 from "@/src/assets/4.jpg";
-import id5 from "@/src/assets/5.jpg";
-import id6 from "@/src/assets/6.jpg";
-// import id7 from "@/src/assets/7.jpg";
-import id8 from "@/src/assets/8.jpg";
-import id9 from "@/src/assets/9.jpg";
-import id10 from "@/src/assets/10.jpg";
-import id11 from "@/src/assets/11.jpg";
-import id12 from "@/src/assets/12.jpg";
-import id13 from "@/src/assets/13.jpg";
-import id14 from "@/src/assets/14.jpg";
-
-// Avtar
-import avtra from "@/src/assets/avtart.jpg";
-
 export default function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [selectedGalleryCategory, setSelectedGalleryCategory] = useState("all");
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // Keen Slider for Services
-  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
+  // Keen Slider for Client Logos
+  const [clientSliderRef, clientInstanceRef] = useKeenSlider<HTMLDivElement>(
     {
       loop: true,
       mode: "free",
       slides: {
-        perView: 3,
-        spacing: 15,
+        perView: 6,
+        spacing: 20,
       },
       breakpoints: {
+        "(max-width: 640px)": {
+          slides: {
+            perView: 2,
+            spacing: 15,
+          },
+        },
         "(max-width: 768px)": {
           slides: {
-            perView: 1,
-            spacing: 10,
+            perView: 3,
+            spacing: 15,
           },
         },
         "(max-width: 1024px)": {
           slides: {
-            perView: 2,
-            spacing: 15,
+            perView: 4,
+            spacing: 20,
+          },
+        },
+        "(max-width: 1280px)": {
+          slides: {
+            perView: 5,
+            spacing: 20,
           },
         },
       },
@@ -127,7 +95,7 @@ export default function HomePage() {
           if (mouseOver) return;
           timeout = setTimeout(() => {
             slider.next();
-          }, 4000);
+          }, 2000);
         }
         slider.on("created", () => {
           slider.container.addEventListener("mouseover", () => {
@@ -146,15 +114,21 @@ export default function HomePage() {
       },
     ]
   );
+  // Contact numbers
+  const contactNumbers = {
+    primary: "+91 9977335544",
+    secondary: "+91 94251 73194",
+  };
 
-  // Hero Slides Data
+  // Hero Slides Data with placeholder images
   const heroSlides = [
     {
       title: "Protecting What Matters Most",
       subtitle: "Since 1984",
       description:
         "Led by retired Army officers, we deliver military-grade security solutions across India with uncompromising discipline and professionalism.",
-      image: banner1,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489372/banner1_dqsuiu.png",
       stats: {
         years: "40+",
         clients: "5000+",
@@ -167,7 +141,8 @@ export default function HomePage() {
       subtitle: "VIP Security Services",
       description:
         "Our highly trained bodyguards provide discreet and professional personal protection services for high-profile individuals and executives.",
-      image: banner2,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489376/banner2_ewpkw1.png",
       stats: {
         guards: "500+",
         operations: "Pan-India",
@@ -180,7 +155,8 @@ export default function HomePage() {
       subtitle: "Business Protection",
       description:
         "Comprehensive corporate security solutions including facility protection, executive security, and risk assessment services.",
-      image: banner3,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489374/banner3_2_u0ntnv.png",
       stats: {
         companies: "1000+",
         facilities: "2500+",
@@ -193,7 +169,8 @@ export default function HomePage() {
       subtitle: "Truth & Justice",
       description:
         "Professional investigation services with military precision, utilizing advanced techniques and technology for accurate results.",
-      image: banner4,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489353/banner4_qzuaxj.png",
       stats: {
         cases: "10000+",
         success: "98%",
@@ -210,7 +187,8 @@ export default function HomePage() {
       description:
         "Highly trained armed security personnel for maximum protection in high-risk environments",
       features: ["Licensed firearms", "Combat training", "Risk assessment"],
-      image: gun,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489654/gun_qiqxm5.png",
     },
     {
       name: "Personal Body Guard",
@@ -218,7 +196,8 @@ export default function HomePage() {
       description:
         "Elite personal protection services with military precision and discretion",
       features: ["VIP protection", "Threat analysis", "Close protection"],
-      image: personalBodyGuard,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489649/BodyGurd_vqnovr.png",
     },
     {
       name: "Housekeeping",
@@ -226,7 +205,8 @@ export default function HomePage() {
       description:
         "Professional cleaning and maintenance services with security-conscious staff",
       features: ["Verified staff", "Quality assurance", "Flexible schedules"],
-      image: housekeeping,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489656/Housekeeping_m5w2ly.png",
     },
     {
       name: "Legal Recovery",
@@ -234,7 +214,8 @@ export default function HomePage() {
       description:
         "Asset recovery and legal enforcement services with lawful procedures",
       features: ["Debt recovery", "Asset tracing", "Legal compliance"],
-      image: legalRecovery,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489691/Legal_vvyusr.png",
     },
     {
       name: "Verification Services",
@@ -246,7 +227,8 @@ export default function HomePage() {
         "Document verification",
         "Employment screening",
       ],
-      image: verificationServices,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489718/Verification_fmkbka.png",
     },
     {
       name: "Investigation",
@@ -254,7 +236,8 @@ export default function HomePage() {
       description:
         "Professional private investigation services with military-grade intelligence gathering",
       features: ["Corporate investigation", "Personal matters", "Surveillance"],
-      image: investigation,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489661/Investigation_d1uyzh.png",
     },
     {
       name: "CCTV Camera Installation",
@@ -262,7 +245,8 @@ export default function HomePage() {
       description:
         "Advanced surveillance systems installation and monitoring services",
       features: ["HD cameras", "Remote monitoring", "24/7 support"],
-      image: "/placeholder.svg?height=300&width=400",
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489658/CCTV_shqbv0.jpg",
     },
     {
       name: "VIP & Corporate Security",
@@ -274,7 +258,8 @@ export default function HomePage() {
         "Event security",
         "Corporate facilities",
       ],
-      image: vip,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489719/VIP_ewfzrd.png",
     },
     {
       name: "Bouncer Security",
@@ -282,7 +267,8 @@ export default function HomePage() {
       description:
         "Professional crowd control and venue security for events and establishments",
       features: ["Crowd control", "Access management", "Conflict resolution"],
-      image: bouncer,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489650/Bouncer_i1da4v.png",
     },
     {
       name: "Lady Security",
@@ -290,7 +276,8 @@ export default function HomePage() {
       description:
         "Female security personnel for sensitive environments and women's safety",
       features: ["Women's safety", "Sensitive areas", "Professional conduct"],
-      image: lady,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489707/Lady_qt3yrs.png",
     },
     {
       name: "Manpower Supply",
@@ -302,7 +289,8 @@ export default function HomePage() {
         "Background verified",
         "Industry expertise",
       ],
-      image: Manpower,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489707/Manpower_ntbj9l.png",
     },
     {
       name: "Gardeners",
@@ -310,7 +298,8 @@ export default function HomePage() {
       description:
         "Professional landscaping and garden maintenance with security awareness",
       features: ["Landscape design", "Maintenance", "Security conscious"],
-      image: "/placeholder.svg?height=300&width=400",
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489720/orange_gb2gaz.jpg",
     },
   ];
 
@@ -352,156 +341,230 @@ export default function HomePage() {
     },
   ];
 
-  const testimonials = [
+  // Client Logos Data with placeholder images
+  const clientLogos = [
     {
-      name: "Rajesh Kumar",
-      company: "Kumar Industries Ltd.",
-      position: "Managing Director",
-      text: "EASS Security has been our trusted partner for over 8 years. Their military discipline and professionalism are unmatched in the industry. The retired Army officers bring a level of expertise that gives us complete confidence in our security arrangements.",
-      rating: 5,
-      image: avtra,
-      date: "March 2024",
+      id: 1,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490023/34_u2idgu.png",
     },
     {
-      name: "Priya Sharma",
-      company: "Sharma Enterprises",
-      position: "CEO",
-      text: "The personal bodyguard service provided by EASS gave me complete peace of mind during a challenging period. Their attention to detail, professional conduct, and discrete protection exceeded all expectations. Highly recommended!",
-      rating: 5,
-      image: avtra,
-      date: "February 2024",
+      id: 2,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490022/33_vxyd8x.jpg",
     },
     {
-      name: "Amit Patel",
-      company: "Patel Group of Companies",
-      position: "Chairman",
-      text: "Their investigation services helped us resolve a critical business matter efficiently and discreetly. The team's military background was evident in their systematic approach and successful results. Outstanding service quality.",
-      rating: 5,
-      image: avtra,
-      date: "January 2024",
+      id: 3,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490021/32_lpp7lh.jpg",
     },
     {
-      name: "Dr. Sunita Mehta",
-      company: "Mehta Healthcare",
-      position: "Director",
-      text: "EASS Security's CCTV installation and monitoring services have significantly enhanced our facility's security. Their 24/7 support team is always responsive and professional. The technology they use is top-notch.",
-      rating: 5,
-      image: avtra,
-      date: "December 2023",
+      id: 4,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490020/30_fmnuxb.jpg",
     },
     {
-      name: "Vikram Singh",
-      company: "Singh Construction",
-      position: "Owner",
-      text: "We've been using EASS Security for our construction sites for 5 years. Their guards are well-trained, punctual, and maintain high standards of security. The military discipline is clearly visible in their operations.",
-      rating: 5,
-      image: avtra,
-      date: "November 2023",
+      id: 5,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490018/29_k9zvte.jpg",
     },
     {
-      name: "Meera Gupta",
-      company: "Gupta Textiles",
-      position: "Managing Partner",
-      text: "The lady security guards provided by EASS are professional, courteous, and highly skilled. They've created a safe environment for our female employees and customers. Excellent service and support.",
-      rating: 5,
-      image: avtra,
-      date: "October 2023",
+      id: 6,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490017/27_inpoij.png",
+    },
+    {
+      id: 7,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490017/25_mwavtd.jpg",
+    },
+    {
+      id: 8,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490011/24_ey6g2j.jpg",
+    },
+    {
+      id: 9,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490010/23_s0qqpx.png",
+    },
+    {
+      id: 10,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490009/22_vcvs9f.png",
+    },
+    {
+      id: 11,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490008/21_g7kfkl.jpg",
+    },
+    {
+      id: 12,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490007/20_yxtwjp.jpg",
+    },
+    {
+      id: 13,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490006/19_dmn0ih.jpg",
+    },
+    {
+      id: 14,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490005/18_ja4dlp.png",
+    },
+    {
+      id: 15,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490004/17_hz8oke.jpg",
+    },
+    {
+      id: 16,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490003/15_aptxxg.jpg",
+    },
+    {
+      id: 17,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490002/14_jvrvsc.jpg",
+    },
+    {
+      id: 18,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490000/13_pvg4av.jpg",
+    },
+    {
+      id: 19,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489999/12_grmqvg.png",
+    },
+    {
+      id: 20,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489999/11_b6ijig.png",
+    },
+    {
+      id: 21,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489997/10_y5zawh.jpg",
+    },
+    {
+      id: 22,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489996/9_angtat.png",
+    },
+    {
+      id: 23,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489996/8_rcmfao.jpg",
+    },
+    {
+      id: 24,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489995/7_nodohx.jpg",
+    },
+    {
+      id: 25,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489994/6_ui440f.jpg",
+    },
+    {
+      id: 26,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489993/5_lbdvpe.jpg",
+    },
+    {
+      id: 27,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489992/4_zhfsmj.jpg",
+    },
+    {
+      id: 28,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489991/2c_ryno6m.gif",
+    },
+    {
+      id: 29,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489991/3_owbmmw.jpg",
+    },
+    {
+      id: 30,
+      logo: "https://res.cloudinary.com/diab9p5zk/image/upload/v1752489991/1c_z0rfae.jpg",
     },
   ];
 
-  // Gallery Data
-  const galleryCategories = [
-    { id: "all", name: "All Images" },
-    // { id: "events", name: "events" },
-  ];
+  const galleryCategories = [{ id: "all", name: "All Images" }];
 
   const galleryImages = [
-    // Security Personnel
     {
       id: 1,
       category: "event",
       title: "Eass Groups",
-      image: id1,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490585/10_ab6mch.jpg",
     },
     {
       id: 2,
       category: "event",
       title: "Eass Groups",
-      image: id2,
-    },
-    {
-      id: 4,
-      category: "event",
-      title: "Eass Groups",
-      image: id4,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490586/14_e9owds.jpg",
     },
     {
       id: 3,
       category: "event",
       title: "Eass Groups",
-      image: id3,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490587/11_akpdbd.jpg",
     },
     {
-      id: 9,
+      id: 4,
       category: "event",
       title: "Eass Groups",
-      image: id9,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490585/13_ypvfuh.jpg",
     },
-
     {
       id: 5,
       category: "event",
       title: "Eass Groups",
-      image: id5,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490583/6_nbe4kd.jpg",
     },
     {
       id: 6,
       category: "event",
       title: "Eass Groups",
-      image: id6,
-    },
-    // {
-    //   id: 7,
-    //   category: "event",
-    //   title: "Eass Groups",
-    //   image: id7,
-    // },
-    {
-      id: 13,
-      category: "event",
-      title: "Eass Groups",
-      image: id13,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490584/12_vep9wp.jpg",
     },
     {
-      id: 14,
+      id: 7,
       category: "event",
       title: "Eass Groups",
-      image: id14,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490583/9_l3fnzs.jpg",
     },
     {
       id: 8,
       category: "event",
       title: "Eass Groups",
-      image: id8,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490580/8_wajfxs.jpg",
     },
-
+    {
+      id: 9,
+      category: "event",
+      title: "Eass Groups",
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490581/7_ed73ib.jpg",
+    },
     {
       id: 10,
       category: "event",
       title: "Eass Groups",
-      image: id10,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490579/4_zaiibm.jpg",
     },
     {
       id: 11,
       category: "event",
       title: "Eass Groups",
-      image: id11,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490580/5_puutmu.jpg",
     },
     {
       id: 12,
       category: "event",
       title: "Eass Groups",
-      image: id12,
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490574/3_ubaxnd.jpg",
+    },
+    {
+      id: 13,
+      category: "event",
+      title: "Eass Groups",
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490572/1_mz1ovo.jpg",
+    },
+    {
+      id: 14,
+      category: "event",
+      title: "Eass Groups",
+      image:
+        "https://res.cloudinary.com/diab9p5zk/image/upload/v1752490571/2_jwtlrz.jpg",
     },
   ];
 
@@ -518,14 +581,6 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, [heroSlides.length]);
 
-  // Auto-rotate testimonials
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
-
   const nextHeroSlide = () => {
     setCurrentHeroSlide((prev) => (prev + 1) % heroSlides.length);
   };
@@ -536,31 +591,21 @@ export default function HomePage() {
     );
   };
 
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
-  };
-
   return (
-    <div className="min-h-screen bg-navy-600">
+    <div className="min-h-screen bg-slate-950">
       {/* Header */}
-      <header className="bg-navy-600 text-white sticky top-0 z-50 shadow-2xl">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
+      <header className="bg-slate-900/95 backdrop-blur-sm text-white sticky top-0 z-50 shadow-2xl border-b border-slate-700/50">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-20">
             <div className="flex items-center space-x-4">
-              <div className="bg-gold-400 p-2 rounded-full">
-                <Shield className="h-8 w-8 text-navy-900" />
+              <div className="bg-gradient-to-br from-orange-400 to-orange-600 p-2 rounded-full">
+                <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold tracking-tight">
+                <h1 className="text-lg sm:text-2xl font-bold tracking-tight bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
                   EASS SECURITY
                 </h1>
-                <p className="text-xs text-gold-400 font-medium">
+                <p className="text-xs text-orange-400 font-medium">
                   SERVICES PVT. LTD.
                 </p>
               </div>
@@ -570,50 +615,53 @@ export default function HomePage() {
             <nav className="hidden lg:flex space-x-8">
               <Link
                 href="#home"
-                className="hover:text-gold-400 transition-colors font-medium"
+                className="hover:text-orange-400 transition-colors font-medium"
               >
                 Home
               </Link>
               <Link
                 href="#about"
-                className="hover:text-gold-400 transition-colors font-medium"
+                className="hover:text-orange-400 transition-colors font-medium"
               >
                 About Us
               </Link>
               <Link
                 href="#services"
-                className="hover:text-gold-400 transition-colors font-medium"
+                className="hover:text-orange-400 transition-colors font-medium"
               >
                 Services
               </Link>
               <Link
                 href="#gallery"
-                className="hover:text-gold-400 transition-colors font-medium"
+                className="hover:text-orange-400 transition-colors font-medium"
               >
                 Gallery
               </Link>
               <Link
-                href="#testimonials"
-                className="hover:text-gold-400 transition-colors font-medium"
+                href="#clients"
+                className="hover:text-orange-400 transition-colors font-medium"
               >
-                Testimonials
+                Clients
               </Link>
               <Link
                 href="#contact"
-                className="hover:text-gold-400 transition-colors font-medium"
+                className="hover:text-orange-400 transition-colors font-medium"
               >
                 Contact
               </Link>
             </nav>
 
             <div className="hidden lg:flex items-center space-x-4">
-              <Button
-                variant="outline"
-                className="border-gold-400 text-gold-400 hover:bg-gold-400 hover:text-navy-900"
-              >
-                <Phone className="h-4 w-4 mr-2" />
-                Call Now
-              </Button>
+              <a href={`tel:${contactNumbers.primary}`}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white bg-transparent"
+                >
+                  <Phone className="h-4 w-4 mr-2" />
+                  Call Now
+                </Button>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -631,58 +679,66 @@ export default function HomePage() {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <nav className="lg:hidden py-4 border-t border-gray-700">
+            <nav className="lg:hidden py-4 border-t border-slate-700/50">
               <div className="flex flex-col space-y-4">
                 <Link
                   href="#home"
-                  className="py-2 hover:text-gold-400 transition-colors font-medium"
+                  className="py-2 hover:text-orange-400 transition-colors font-medium"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Home
                 </Link>
                 <Link
                   href="#about"
-                  className="py-2 hover:text-gold-400 transition-colors font-medium"
+                  className="py-2 hover:text-orange-400 transition-colors font-medium"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   About Us
                 </Link>
                 <Link
                   href="#services"
-                  className="py-2 hover:text-gold-400 transition-colors font-medium"
+                  className="py-2 hover:text-orange-400 transition-colors font-medium"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Services
                 </Link>
                 <Link
                   href="#gallery"
-                  className="py-2 hover:text-gold-400 transition-colors font-medium"
+                  className="py-2 hover:text-orange-400 transition-colors font-medium"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Gallery
                 </Link>
                 <Link
-                  href="#testimonials"
-                  className="py-2 hover:text-gold-400 transition-colors font-medium"
+                  href="#clients"
+                  className="py-2 hover:text-orange-400 transition-colors font-medium"
+                  onClick={() => setIsMenuOpen(false)}
                 >
-                  Testimonials
+                  Clients
                 </Link>
                 <Link
                   href="#contact"
-                  className="py-2 hover:text-gold-400 transition-colors font-medium"
+                  className="py-2 hover:text-orange-400 transition-colors font-medium"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Contact
                 </Link>
-                <Button className="bg-gold-400 hover:bg-gold-500 text-navy-900 font-semibold mt-4">
-                  <Phone className="h-4 w-4 mr-2" />
-                  Call Now
-                </Button>
+                <a href={`tel:${contactNumbers.primary}`}>
+                  <Button className="bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold mt-4 w-full">
+                    <Phone className="h-4 w-4 mr-2" />
+                    Call Now
+                  </Button>
+                </a>
               </div>
             </nav>
           )}
         </div>
       </header>
 
-      {/* Hero Section with Slider */}
+      {/* Hero Section */}
       <section
         id="home"
-        className="relative  text-white py-24 lg:py-32 overflow-hidden"
+        className="relative text-white py-20 overflow-hidden min-h-screen"
       >
         <div className="absolute inset-0">
           {heroSlides.map((slide, index) => (
@@ -697,7 +753,10 @@ export default function HomePage() {
                 alt={slide.title}
                 fill
                 className="object-cover"
+                priority={index === 0}
+                sizes="100vw"
               />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-slate-800/50 to-slate-900/70"></div>
             </div>
           ))}
         </div>
@@ -705,13 +764,13 @@ export default function HomePage() {
         {/* Navigation Arrows */}
         <button
           onClick={prevHeroSlide}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-navy-900 p-3 rounded-full transition-all duration-300 z-10 shadow-lg"
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/20 backdrop-blur-sm hover:bg-orange-500/20 text-white p-3 rounded-full transition-all duration-300 z-10"
         >
           <ChevronLeft className="h-6 w-6" />
         </button>
         <button
           onClick={nextHeroSlide}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-navy-900 p-3 rounded-full transition-all duration-300 z-10 shadow-lg"
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/20 backdrop-blur-sm hover:bg-orange-500/20 text-white p-3 rounded-full transition-all duration-300 z-10"
         >
           <ChevronRight className="h-6 w-6" />
         </button>
@@ -724,68 +783,67 @@ export default function HomePage() {
               onClick={() => setCurrentHeroSlide(index)}
               className={`w-4 h-4 rounded-full transition-all duration-300 border-2 ${
                 index === currentHeroSlide
-                  ? "bg-gold-400 border-gold-400"
+                  ? "bg-orange-500 border-orange-500"
                   : "bg-white/20 border-white/50 hover:bg-white/40"
               }`}
             />
           ))}
         </div>
 
-        <div className="relative container mx-auto px-4">
-          <div className="max-w-5xl">
-            <div className="flex items-center space-x-3 mb-8">
-              <Badge className="bg-gold-400 text-navy-900 hover:bg-gold-500 text-sm font-semibold px-4 py-2">
+        <div className="relative container mx-auto px-4 md:px-6 lg:px-8 h-full flex items-center min-h-screen">
+          <div className="max-w-4xl">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-3 mb-6">
+              <Badge className="bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold px-4 py-2">
                 TRUSTED SINCE 1984
               </Badge>
               <Badge
                 variant="outline"
-                className="border-gold-400 text-gold-400 text-sm font-semibold px-4 py-2"
+                className="border-orange-400 text-orange-400 font-semibold px-4 py-2"
               >
                 MILITARY HERITAGE
               </Badge>
             </div>
-
-            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-shadow-lg">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               {heroSlides[currentHeroSlide].title}
               <br />
-              <span className="text-gold-400">
+              <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
                 {heroSlides[currentHeroSlide].subtitle}
               </span>
             </h1>
-
-            <p className="text-xl md:text-2xl mb-12 text-gray-100 max-w-3xl leading-relaxed text-shadow">
+            <p className="text-lg md:text-xl mb-8 text-gray-100 max-w-3xl leading-relaxed">
               {heroSlides[currentHeroSlide].description}
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 mb-16">
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <Button
                 size="lg"
-                className="bg-gold-400 hover:bg-gold-500 text-navy-900 font-bold text-lg px-8 py-4 h-auto"
+                className="bg-gradient-to-r from-orange-400 to-orange-600 text-white font-bold px-8 py-4 h-auto"
               >
                 Request a Quote
-                <ArrowRight className="ml-3 h-6 w-6" />
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Link href="#gallery">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white text-navy-900 font-bold text-lg px-8 py-4 h-auto"
+                  className="border-2 border-white/50 text-white hover:bg-white/10 font-bold px-8 py-4 h-auto bg-transparent"
                 >
-                  <PlayCircle className="mr-3 h-6 w-6" />
+                  <PlayCircle className="mr-2 h-5 w-5" />
                   Watch Our Story
                 </Button>
               </Link>
             </div>
-
             {/* Dynamic Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {Object.entries(heroSlides[currentHeroSlide].stats).map(
                 ([key, value]) => (
-                  <div key={key} className="text-center">
-                    <div className="text-4xl font-bold text-gold-400 mb-2">
+                  <div
+                    key={key}
+                    className="text-center bg-black/20 backdrop-blur-sm p-4 rounded-lg"
+                  >
+                    <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent mb-2">
                       {value}
                     </div>
-                    <div className="text-gray-300 font-medium capitalize">
+                    <div className="text-gray-300 font-medium capitalize text-sm">
                       {key.replace(/([A-Z])/g, " $1")}
                     </div>
                   </div>
@@ -797,9 +855,9 @@ export default function HomePage() {
       </section>
 
       {/* Banner Section */}
-      <section className="py-4 bg-gradient-to-r from-gold-400 to-gold-500 text-navy-900">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-center space-x-8 text-center">
+      <section className="py-12 bg-gradient-to-r from-orange-400 to-orange-600 text-white">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-8 text-center">
             <div className="flex items-center space-x-2">
               <Award className="h-5 w-5" />
               <span className="font-bold">ISO Certified</span>
@@ -821,18 +879,21 @@ export default function HomePage() {
       </section>
 
       {/* About Us Section */}
-      <section id="about" className="py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section id="about" className="py-20 bg-slate-800">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1">
-              <Badge className="mb-6  text-white text-xl font-semibold px-4 py-2">
+              <Badge className="mb-6 bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold px-4 py-2">
                 ABOUT EASS SECURITY
               </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold mb-8 text-navy-900 leading-tight">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-8 text-white leading-tight">
                 Four Decades of
-                <span className="text-gold-400"> Unwavering Protection</span>
+                <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                  {" "}
+                  Unwavering Protection
+                </span>
               </h2>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+              <p className="text-lg text-gray-300 mb-6 leading-relaxed">
                 Since 1984, EASS Security Services Pvt. Ltd. has stood as
                 India&apos;s most trusted guardian, providing comprehensive
                 security solutions with military precision. Founded and
@@ -840,63 +901,60 @@ export default function HomePage() {
                 discipline, strategic thinking, and operational excellence to
                 civilian security needs.
               </p>
-              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+              <p className="text-lg text-gray-300 mb-8 leading-relaxed">
                 Our nationwide operations encompass investigation services,
                 personal protection, corporate security, and specialized
                 manpower solutions. We seamlessly blend traditional military
                 values of honor, duty, and integrity with cutting-edge security
                 technologies and methodologies.
               </p>
-
               {/* Key Features */}
               <div className="space-y-4 mb-8">
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-6 w-6 text-gold-400" />
-                  <span className="text-gray-700 font-medium">
+                <div className="flex items-center space-x-3 bg-slate-700/50 p-3 rounded-lg">
+                  <CheckCircle className="h-6 w-6 text-orange-400 flex-shrink-0" />
+                  <span className="text-gray-300 font-medium">
                     Military-grade discipline and training protocols
                   </span>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-6 w-6 text-gold-400" />
-                  <span className="text-gray-700 font-medium">
+                <div className="flex items-center space-x-3 bg-slate-700/50 p-3 rounded-lg">
+                  <CheckCircle className="h-6 w-6 text-orange-400 flex-shrink-0" />
+                  <span className="text-gray-300 font-medium">
                     Nationwide operations with local expertise
                   </span>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-6 w-6 text-gold-400" />
-                  <span className="text-gray-700 font-medium">
+                <div className="flex items-center space-x-3 bg-slate-700/50 p-3 rounded-lg">
+                  <CheckCircle className="h-6 w-6 text-orange-400 flex-shrink-0" />
+                  <span className="text-gray-300 font-medium">
                     Comprehensive security and investigation services
                   </span>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-6 w-6 text-gold-400" />
-                  <span className="text-gray-700 font-medium">
+                <div className="flex items-center space-x-3 bg-slate-700/50 p-3 rounded-lg">
+                  <CheckCircle className="h-6 w-6 text-orange-400 flex-shrink-0" />
+                  <span className="text-gray-300 font-medium">
                     24/7 monitoring and emergency response
                   </span>
                 </div>
               </div>
-
-              <Button className=" hover:bg-navy-800 text-white font-semibold px-8 py-3">
+              <Button className="bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold px-8 py-3">
                 Learn More About Us
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
-
             <div className="order-1 lg:order-2 relative">
               <div className="relative">
                 <Image
-                  src={secoundsec || "/placeholder.svg"}
+                  src="https://res.cloudinary.com/diab9p5zk/image/upload/v1752489352/banner3_w64r9w.png"
                   alt="EASS Security leadership team"
                   width={600}
                   height={700}
-                  className="rounded-2xl shadow-2xl"
+                  className="rounded-2xl shadow-2xl w-full h-auto border border-slate-600/50"
                 />
-                <div className="absolute -bottom-5  bg-gold-400 text-gray-700 p-8 rounded-2xl shadow-xl max-w-xs">
-                  <Shield className="h-12 w-12 mb-4" />
-                  <div className="font-bold text-xl mb-2">
+                <div className="absolute -bottom-5 left-5 bg-slate-800/90 backdrop-blur-sm p-6 rounded-2xl max-w-xs">
+                  <Shield className="h-12 w-12 mb-4 text-orange-400" />
+                  <div className="font-bold text-xl mb-2 text-white">
                     Military Heritage
                   </div>
-                  <div className="text-sm font-medium">
+                  <div className="text-sm font-medium text-gray-300">
                     Led by Retired Army Officers with Proven Excellence
                   </div>
                 </div>
@@ -906,109 +964,64 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services Section with Keen Slider */}
-      <section id="services" className=" bg-white">
-        <div className="container mx-auto px-4">
+      {/* Services Section */}
+      <section id="services" className="py-20 bg-slate-900">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <Badge className="mb-6  text-white text-xl font-semibold px-4 py-2">
+            <Badge className="mb-6 bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold px-4 py-2">
               OUR SERVICES
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-navy-900 leading-tight">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-8 text-white leading-tight">
               Comprehensive Security
-              <span className="text-gold-400"> Solutions</span>
+              <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                {" "}
+                Solutions
+              </span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
               From personal protection to corporate security, we offer a
               complete spectrum of services tailored to meet your specific
               security requirements with military precision.
             </p>
           </div>
 
-          {/* Services Carousel with Keen Slider */}
-          <div className="relative mb-16">
-            <div ref={sliderRef} className="keen-slider">
-              {services.map((service, index) => (
-                <div key={index} className="keen-slider__slide">
-                  <Card className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-gray-200 hover:border-gold-400 h-full mx-2">
-                    <CardContent className="p-0">
-                      <div className="relative overflow-hidden rounded-t-lg">
-                        <Image
-                          src={service.image || "/placeholder.svg"}
-                          alt={service.name}
-                          width={400}
-                          height={300}
-                          className="w-full h-48 object-contain object-center group-hover:scale-110 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <service.icon className="h-8 w-8 text-gold-400" />
-                        </div>
-                      </div>
-                      <div className="p-6">
-                        <h3 className="font-bold text-xl mb-3 text-navy-900">
-                          {service.name}
-                        </h3>
-                        <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                          {service.description}
-                        </p>
-                        <ul className="space-y-2 mb-4">
-                          {service.features.map((feature, idx) => (
-                            <li
-                              key={idx}
-                              className="flex items-center space-x-2 text-sm"
-                            >
-                              <CheckCircle className="h-4 w-4 text-gold-400" />
-                              <span className="text-gray-600">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        <Button className="w-full  hover:bg-navy-800 text-white">
-                          Learn More
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
-            </div>
-
-            {/* Navigation Arrows */}
-            {instanceRef.current && (
-              <>
-                <button
-                  onClick={() => instanceRef.current?.prev()}
-                  className="absolute -left-12 top-1/2 border-2 border-gray-200 transform -translate-y-1/2  hover:bg-navy-800 text-gold-400 p-3 rounded-full transition-all duration-300 shadow-lg z-10"
-                >
-                  <ChevronLeft className="h-6 w-6" />
-                </button>
-                <button
-                  onClick={() => instanceRef.current?.next()}
-                  className="absolute -right-12 top-1/2 transform -translate-y-1/2 border-2 border-gray-200  hover:bg-navy-800 text-gold-400 p-3 rounded-full transition-all duration-300 shadow-lg z-10"
-                >
-                  <ChevronRight className="h-6 w-6" />
-                </button>
-              </>
-            )}
-          </div>
-
           {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {services.map((service, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-gray-200 hover:border-gold-400"
+                className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-slate-600/50 hover:border-orange-400/50 bg-slate-800/50 backdrop-blur-sm"
               >
-                <CardContent className="p-8 text-center">
-                  <div className=" text-gold-400 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold-400 group-hover:text-navy-900 transition-all duration-300">
-                    <service.icon className="h-10 w-10" />
+                <CardContent className="p-0">
+                  <div className="relative overflow-hidden rounded-t-lg">
+                    <Image
+                      src={service.image || "/placeholder.svg"}
+                      alt={service.name}
+                      width={400}
+                      height={300}
+                      className="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  <h3 className="font-bold text-xl mb-3 text-navy-900">
-                    {service.name}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {service.description}
-                  </p>
+                  <div className="p-6">
+                    <h3 className="font-bold text-xl mb-3 text-white">
+                      {service.name}
+                    </h3>
+                    <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                      {service.description}
+                    </p>
+                    <ul className="space-y-2 mb-4">
+                      {service.features.map((feature, idx) => (
+                        <li
+                          key={idx}
+                          className="flex items-center space-x-2 text-sm"
+                        >
+                          <CheckCircle className="h-4 w-4 text-orange-400 flex-shrink-0" />
+                          <span className="text-gray-300">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -1017,17 +1030,20 @@ export default function HomePage() {
       </section>
 
       {/* Gallery Section */}
-      <section id="gallery" className="py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section id="gallery" className="py-20 bg-slate-800">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <Badge className="mb-6   text-xl font-semibold px-4 py-2">
+            <Badge className="mb-6 bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold px-4 py-2">
               OUR GALLERY
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-navy-900 leading-tight">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-8 text-white leading-tight">
               Visual
-              <span className="text-gold-400"> Excellence</span>
+              <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                {" "}
+                Excellence
+              </span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Explore our comprehensive gallery showcasing our professional
               security operations, training programs, state-of-the-art
               equipment, and successful deployments across India.
@@ -1040,31 +1056,24 @@ export default function HomePage() {
               <button
                 key={category.id}
                 onClick={() => setSelectedGalleryCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 bg-gold-400 text-navy-900 shadow-lg ${
+                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                   selectedGalleryCategory === category.id
-                    ? "bg-gold-400 text-navy-900 shadow-lg"
-                    : "bg-gold-400 text-navy-900 shadow-lg hover: hover:text-white border border-gray-300"
+                    ? "bg-gradient-to-r from-orange-400 to-orange-600 text-white"
+                    : "bg-slate-700/50 text-gray-300 hover:bg-orange-500/20 hover:text-white border border-slate-600/50"
                 }`}
               >
                 {category.name}
-                {/* <span className="ml-2 text-sm">({category.count})</span> */}
               </button>
             ))}
           </div>
 
           {/* Gallery Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredGalleryImages.map((image) => (
               <div
                 key={image.id}
                 className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
-                onClick={() =>
-                  setSelectedImage(
-                    typeof image.image === "string"
-                      ? image.image
-                      : image.image.src
-                  )
-                }
+                onClick={() => setSelectedImage(image.image)}
               >
                 <Image
                   src={image.image || "/placeholder.svg"}
@@ -1073,15 +1082,14 @@ export default function HomePage() {
                   height={400}
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/90 via-navy-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-4 left-4 right-4">
                     <h3 className="text-white font-bold text-lg mb-1">
                       {image.title}
                     </h3>
-                    {/* <p className="text-gray-300 text-sm">{image.description}</p> */}
                   </div>
                   <div className="absolute top-4 right-4">
-                    <ZoomIn className="h-6 w-6 text-gold-400" />
+                    <ZoomIn className="h-6 w-6 text-orange-400" />
                   </div>
                 </div>
               </div>
@@ -1104,7 +1112,7 @@ export default function HomePage() {
                 />
                 <button
                   onClick={() => setSelectedImage(null)}
-                  className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-colors"
+                  className="absolute top-4 right-4 bg-black/20 backdrop-blur-sm hover:bg-orange-500/20 text-white p-2 rounded-full transition-colors"
                 >
                   <X className="h-6 w-6" />
                 </button>
@@ -1115,20 +1123,22 @@ export default function HomePage() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section id="why-choose-us" className="py-24   relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gold-400/20 to-transparent"></div>
-        </div>
-
-        <div className="relative container mx-auto px-4">
+      <section
+        id="why-choose-us"
+        className="py-20 bg-slate-900 relative overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/50 to-transparent"></div>
+        <div className="relative container mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <Badge className="mb-6 text-lg font-semibold px-4 py-2">
+            <Badge className="mb-6 bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold px-4 py-2">
               WHY CHOOSE EASS
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-8 text-white leading-tight">
               The EASS
-              <span className="text-gold-400"> Advantage</span>
+              <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                {" "}
+                Advantage
+              </span>
             </h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Discover what sets us apart in the security industry and why
@@ -1136,19 +1146,20 @@ export default function HomePage() {
               sensitive operations.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
             {whyChooseUs.map((item, index) => (
               <div key={index} className="text-center group">
                 <div className="relative mb-8">
-                  <div className="bg-gold-400 text-navy-900 w-24 h-24 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-2xl">
+                  <div className="bg-gradient-to-r from-orange-400 to-orange-600 text-white w-24 h-24 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
                     <item.icon className="h-12 w-12" />
                   </div>
-                  <div className="absolute -top-2 -right-2 bg-navy-800 text-gold-400 px-3 py-1 rounded-full text-xs font-bold">
+                  <div className="absolute -top-2 -right-2 bg-slate-800/90 backdrop-blur-sm text-orange-400 px-3 py-1 rounded-full text-xs font-bold">
                     {item.stats}
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                <h3 className="text-2xl font-bold mb-4 text-white">
+                  {item.title}
+                </h3>
                 <p className="text-gray-300 leading-relaxed">
                   {item.description}
                 </p>
@@ -1157,146 +1168,185 @@ export default function HomePage() {
           </div>
 
           {/* Additional Benefits */}
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-gold-400 mb-2">ISO</div>
+          <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center bg-slate-800/50 backdrop-blur-sm p-4 rounded-lg">
+              <div className="text-4xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent mb-2">
+                ISO
+              </div>
               <div className="text-gray-300 font-medium">
                 Certified Operations
               </div>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-gold-400 mb-2">100%</div>
+            <div className="text-center bg-slate-800/50 backdrop-blur-sm p-4 rounded-lg">
+              <div className="text-4xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent mb-2">
+                100%
+              </div>
               <div className="text-gray-300 font-medium">
                 Background Verified
               </div>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-gold-400 mb-2">24x7</div>
+            <div className="text-center bg-slate-800/50 backdrop-blur-sm p-4 rounded-lg">
+              <div className="text-4xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent mb-2">
+                24x7
+              </div>
               <div className="text-gray-300 font-medium">
                 Emergency Response
               </div>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-gold-400 mb-2">Pan</div>
+            <div className="text-center bg-slate-800/50 backdrop-blur-sm p-4 rounded-lg">
+              <div className="text-4xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent mb-2">
+                Pan
+              </div>
               <div className="text-gray-300 font-medium">India Coverage</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Client Testimonials Slider */}
-      <section id="testimonials" className="py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
+      {/* Our Trusted Clients Section */}
+      <section id="clients" className="py-20 bg-slate-800">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <Badge className="mb-6  text-white text-sm font-semibold px-4 py-2">
-              CLIENT TESTIMONIALS
+            <Badge className="mb-6 bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold px-4 py-2">
+              OUR TRUSTED CLIENTS
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-navy-900 leading-tight">
-              What Our Clients
-              <span className="text-gold-400"> Say About Us</span>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-8 text-white leading-tight">
+              Protecting India&apos;s
+              <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                {" "}
+                Leading Enterprises
+              </span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Don&apos;t just take our word for it. Here&apos;s what our
-              satisfied clients across India have to say about our security
-              services and professional excellence.
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Over 35+ prestigious organizations across various industries trust
+              EASS Security for their critical security needs. From Fortune 500
+              companies to government institutions, we&apos;ve been their
+              reliable security partner.
             </p>
           </div>
 
-          {/* Testimonials Slider */}
-          <div className="relative max-w-4xl mx-auto">
-            <div className="overflow-hidden">
-              <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{
-                  transform: `translateX(-${currentTestimonial * 100}%)`,
-                }}
-              >
-                {testimonials.map((testimonial, index) => (
-                  <div key={index} className="w-full flex-shrink-0 px-4">
-                    <Card className="bg-white shadow-2xl border-0 hover:shadow-3xl transition-shadow duration-300">
-                      <CardContent className="p-12 text-center">
-                        <Quote className="h-12 w-12 text-gold-400 mx-auto mb-6" />
-                        <div className="flex justify-center mb-6">
-                          {[...Array(testimonial.rating)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className="h-6 w-6 text-gold-400 fill-current"
-                            />
-                          ))}
-                        </div>
-                        <p className="text-gray-700 mb-8 italic text-xl leading-relaxed">
-                          &quot;{testimonial.text}&quot;
-                        </p>
-                        <div className="flex items-center justify-center space-x-4">
-                          <Image
-                            src={testimonial.image || "/placeholder.svg"}
-                            alt={testimonial.name}
-                            width={80}
-                            height={80}
-                            className="rounded-full border-4 border-gold-400"
-                          />
-                          <div className="text-left">
-                            <div className="font-bold text-navy-900 text-xl">
-                              {testimonial.name}
-                            </div>
-                            <div className="text-gold-400 font-medium">
-                              {testimonial.position}
-                            </div>
-                            <div className="text-gray-600">
-                              {testimonial.company}
-                            </div>
-                            <div className="text-gray-500 text-sm flex items-center mt-1">
-                              <Calendar className="h-4 w-4 mr-1" />
-                              {testimonial.date}
-                            </div>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                ))}
+          {/* Client Statistics */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
+            <div className="text-center bg-slate-700/50 backdrop-blur-sm p-6 rounded-lg">
+              <div className="text-4xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent mb-2">
+                35+
               </div>
+              <div className="text-gray-300 font-medium">Trusted Clients</div>
+            </div>
+            <div className="text-center bg-slate-700/50 backdrop-blur-sm p-6 rounded-lg">
+              <div className="text-4xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent mb-2">
+                8
+              </div>
+              <div className="text-gray-300 font-medium">Industry Sectors</div>
+            </div>
+            <div className="text-center bg-slate-700/50 backdrop-blur-sm p-6 rounded-lg">
+              <div className="text-4xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent mb-2">
+                100%
+              </div>
+              <div className="text-gray-300 font-medium">Client Retention</div>
+            </div>
+            <div className="text-center bg-slate-700/50 backdrop-blur-sm p-6 rounded-lg">
+              <div className="text-4xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent mb-2">
+                40+
+              </div>
+              <div className="text-gray-300 font-medium">Years Experience</div>
+            </div>
+          </div>
+
+          {/* Client Logos Slider */}
+          <div className="relative mb-16">
+            <div ref={clientSliderRef} className="keen-slider">
+              {clientLogos.map((client) => (
+                <div key={client.id} className="keen-slider__slide">
+                  <div className="group bg-slate-700/50 backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-xl hover:shadow-2xl transition-all duration-300 h-16 sm:h-20 md:h-24 lg:h-28 flex items-center justify-center mx-1 sm:mx-2">
+                    <Image
+                      src={client.logo || "/placeholder.svg"}
+                      alt="Eass Group"
+                      width={120}
+                      height={60}
+                      className="max-w-full max-h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 filter grayscale group-hover:grayscale-0"
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Navigation Arrows */}
-            <button
-              onClick={prevTestimonial}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2  hover:bg-navy-800 text-gold-400 p-3 rounded-full transition-all duration-300 shadow-lg"
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </button>
-            <button
-              onClick={nextTestimonial}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2  hover:bg-navy-800 text-gold-400 p-3 rounded-full transition-all duration-300 shadow-lg"
-            >
-              <ChevronRight className="h-6 w-6" />
-            </button>
-
-            {/* Slide Indicators */}
-            <div className="flex justify-center space-x-2 mt-8">
-              {testimonials.map((_, index) => (
+            {clientInstanceRef.current && (
+              <>
                 <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentTestimonial ? "bg-gold-400" : "bg-gray-300"
-                  }`}
-                />
+                  onClick={() => clientInstanceRef.current?.prev()}
+                  className="absolute left-0 sm:-left-4 md:-left-6 xl:-left-12 top-1/2 transform -translate-y-1/2 bg-slate-800/80 backdrop-blur-sm hover:bg-orange-500/20 text-orange-400 hover:text-white p-1.5 sm:p-2 md:p-3 rounded-full transition-all duration-300 shadow-lg z-10 border border-slate-600/50 touch-manipulation"
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-6 lg:w-6" />
+                </button>
+                <button
+                  onClick={() => clientInstanceRef.current?.next()}
+                  className="absolute right-0 sm:-right-4 md:-right-6 xl:-right-12 top-1/2 transform -translate-y-1/2 bg-slate-800/80 backdrop-blur-sm hover:bg-orange-500/20 text-orange-400 hover:text-white p-1.5 sm:p-2 md:p-3 rounded-full transition-all duration-300 shadow-lg z-10 border border-slate-600/50 touch-manipulation"
+                  aria-label="Next slide"
+                >
+                  <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-6 lg:w-6" />
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* Industry Categories */}
+          <div className="mt-20">
+            <h3 className="text-2xl font-bold text-center mb-12 text-white">
+              Industries We Serve
+            </h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              {[
+                "Corporate",
+                "Banking",
+                "IT",
+                "Manufacturing",
+                "Automotive",
+                "Pharma",
+                "Oil & Gas",
+                "Power",
+                "Real Estate",
+                "Telecom",
+              ].map((industry) => (
+                <Badge
+                  key={industry}
+                  variant="outline"
+                  className="border-orange-400/50 text-orange-400 hover:bg-orange-400/10 px-4 py-2 bg-slate-700/50 backdrop-blur-sm"
+                >
+                  {industry}
+                </Badge>
               ))}
             </div>
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center mt-20">
+            <p className="text-lg text-gray-300 mb-8">
+              Join these industry leaders who trust EASS Security for their
+              protection needs
+            </p>
+            <Button className="bg-gradient-to-r from-orange-400 to-orange-600 text-white font-bold px-8 py-3">
+              Become Our Next Success Story
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
           </div>
         </div>
       </section>
 
       {/* Call to Action Banner */}
-      <section className="py-20 bg-gradient-to-r from-navy-900 via-navy-800 to-navy-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-gold-400/10 to-transparent"></div>
-        <div className="relative container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+      <section className="py-16 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-400/10 to-transparent"></div>
+        <div className="relative container mx-auto px-4 md:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight">
             Ready to Secure Your
-            <span className="text-gold-400"> Future?</span>
+            <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+              {" "}
+              Future?
+            </span>
           </h2>
-          <p className="text-xl mb-12 text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg lg:text-xl mb-12 text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Contact us today for a free consultation and discover how EASS
             Security can protect what matters most to you with our
             military-grade security solutions.
@@ -1304,186 +1354,194 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Button
               size="lg"
-              className="bg-gold-400 hover:bg-gold-500 text-navy-900 font-bold text-lg px-10 py-4 h-auto"
+              className="bg-gradient-to-r from-orange-400 to-orange-600 text-white font-bold px-10 py-4 h-auto"
             >
               Get Free Security Assessment
               <ArrowRight className="ml-3 h-6 w-6" />
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-white text-navy-900 font-bold text-lg px-10 py-4 h-auto"
-            >
-              <Phone className="mr-3 h-6 w-6" />
-              Call: +91 94251 73194
-            </Button>
+            <a href={`tel:${contactNumbers.primary}`}>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-white/50 text-white hover:bg-white/10 font-bold px-10 py-4 h-auto bg-transparent"
+              >
+                <Phone className="mr-3 h-6 w-6" />
+                Call: {contactNumbers.primary}
+              </Button>
+            </a>
           </div>
         </div>
       </section>
 
       {/* Contact Us Section */}
-      <section id="contact" className="py-24 bg-white">
-        <div className="container mx-auto px-4">
+      <section id="contact" className="py-20 bg-slate-900">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <Badge className="mb-6  text-white text-sm font-semibold px-4 py-2">
+            <Badge className="mb-6 bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold px-4 py-2">
               CONTACT US
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-navy-900 leading-tight">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-8 text-white leading-tight">
               Get in
-              <span className="text-gold-400"> Touch</span>
+              <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                {" "}
+                Touch
+              </span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Ready to discuss your security needs? Contact our team of experts
               for personalized solutions and immediate assistance.
             </p>
           </div>
-
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Information */}
             <div>
-              <h3 className="text-3xl font-bold mb-12 text-navy-900">
+              <h3 className="text-3xl font-bold mb-12 text-white">
                 Contact Information
               </h3>
-
               <div className="space-y-8">
-                <div className="flex items-start space-x-6">
-                  <div className=" text-gold-400 p-4 rounded-full flex-shrink-0">
+                <div className="flex items-start space-x-6 bg-slate-800/50 backdrop-blur-sm p-4 rounded-lg">
+                  <div className="bg-orange-500/20 text-orange-400 p-4 rounded-full flex-shrink-0">
                     <MapPin className="h-8 w-8" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-navy-900 mb-2 text-xl">
-                      Head Office
+                    <h4 className="font-bold text-white mb-2 text-xl">
+                      Corporate Office
                     </h4>
-                    <p className="text-gray-600 text-lg leading-relaxed">
-                   
-                      RK ROYAL CITY Building no -B Gala no. B105 near union bank
-                      Village -Mankoli taluka bhiwandi dist- Thane -421302
+                    <p className="text-gray-300 leading-relaxed">
+                      RK ROYAL CITY Building no -B Gala no. B05 near union bank
+                      Village -Mankoli taluka bhiwandi dist- Thane -421302
                     </p>
                   </div>
                 </div>
-
-                <div className="flex items-start space-x-6">
-                  <div className=" text-gold-400 p-4 rounded-full flex-shrink-0">
+                <div className="flex items-start space-x-6 bg-slate-800/50 backdrop-blur-sm p-4 rounded-lg">
+                  <div className="bg-orange-500/20 text-orange-400 p-4 rounded-full flex-shrink-0">
+                    <MapPin className="h-8 w-8" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white mb-2 text-xl">
+                      Regional Office
+                    </h4>
+                    <p className="text-gray-300 leading-relaxed">
+                      Manorama Nagar, Thane (W), Mumbai Pin code: 400604
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-6 bg-slate-800/50 backdrop-blur-sm p-4 rounded-lg">
+                  <div className="bg-orange-500/20 text-orange-400 p-4 rounded-full flex-shrink-0">
                     <Phone className="h-8 w-8" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-navy-900 mb-2 text-xl">
+                    <h4 className="font-bold text-white mb-2 text-xl">
                       Phone Numbers
                     </h4>
-                    <p className="text-gray-600 text-lg leading-relaxed">
-                      Main: +91 94251 73194
-                     
-                    </p>
+                    <div className="space-y-2">
+                      <a
+                        href={`tel:${contactNumbers.primary}`}
+                        className="block text-gray-300 leading-relaxed hover:text-orange-400 transition-colors"
+                      >
+                        Primary: {contactNumbers.primary}
+                      </a>
+                      <a
+                        href={`tel:${contactNumbers.secondary}`}
+                        className="block text-gray-300 leading-relaxed hover:text-orange-400 transition-colors"
+                      >
+                        Secondary: {contactNumbers.secondary}
+                      </a>
+                    </div>
                   </div>
                 </div>
-
-                <div className="flex items-start space-x-6">
-                  <div className=" text-gold-400 p-4 rounded-full flex-shrink-0">
+                <div className="flex items-start space-x-6 bg-slate-800/50 backdrop-blur-sm p-4 rounded-lg">
+                  <div className="bg-orange-500/20 text-orange-400 p-4 rounded-full flex-shrink-0">
                     <Mail className="h-8 w-8" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-navy-900 mb-2 text-xl">
+                    <h4 className="font-bold text-white mb-2 text-xl">
                       Email Addresses
                     </h4>
-                    <p className="text-gray-600 text-lg leading-relaxed">
-                      General: easssatna@gmail.com
-                      
-                    </p>
+                    <a
+                      href="mailto:eassgroupofficial@gmail.com"
+                      className="text-gray-300 leading-relaxed hover:text-orange-400 transition-colors "
+                    >
+                      General: eassgroupofficial@gmail.com
+                    </a>
                   </div>
                 </div>
-
-                <div className="flex items-start space-x-6">
-                  <div className=" text-gold-400 p-4 rounded-full flex-shrink-0">
+                <div className="flex items-start space-x-6 bg-slate-800/50 backdrop-blur-sm p-4 rounded-lg">
+                  <div className="bg-orange-500/20 text-orange-400 p-4 rounded-full flex-shrink-0">
                     <Clock className="h-8 w-8" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-navy-900 mb-2 text-xl">
+                    <h4 className="font-bold text-white mb-2 text-xl">
                       Business Hours
                     </h4>
-                    <p className="text-gray-600 text-lg leading-relaxed">
+                    <p className="text-gray-300 leading-relaxed">
                       24/7 Emergency Support
                       <br />
                       Office: Monday - Saturday
                       <br />
-                      9:00 AM - 6:00 PM IST
+                      10:00 AM - 6:00 PM IST
                     </p>
                   </div>
                 </div>
               </div>
-
-              {/* Map Placeholder */}
-              <div className="mt-12 bg-gradient-to-br from-gray-100 to-gray-200 h-80 rounded-2xl flex items-center justify-center shadow-inner">
-                <div className="text-center text-gray-500">
-                  <MapPin className="h-16 w-16 mx-auto mb-4 text-navy-900" />
-                  <p className="text-xl font-semibold text-navy-900">
-                    Interactive Map
-                  </p>
-                  <p className="text-lg">EASS Security Head Office</p>
-                  <p className="text-sm">New Delhi, India</p>
-                </div>
-              </div>
             </div>
-
             {/* Contact Form */}
             <div>
-              <Card className="shadow-2xl border-0">
+              <Card className="shadow-2xl border-0 bg-slate-800/50 backdrop-blur-sm">
                 <CardContent className="p-10">
-                  <h3 className="text-3xl font-bold mb-8 text-navy-900">
+                  <h3 className="text-3xl font-bold mb-8 text-white">
                     Send us a Message
                   </h3>
                   <form className="space-y-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-bold text-navy-900 mb-3">
+                        <label className="block text-sm font-bold text-white mb-3">
                           First Name *
                         </label>
                         <Input
                           placeholder="Enter your first name"
                           required
-                          className="h-12 border-2 border-gray-300 focus:border-gold-400"
+                          className="h-12 border-2 border-slate-600/50 bg-slate-700/50 backdrop-blur-sm text-white focus:border-orange-400"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-bold text-navy-900 mb-3">
+                        <label className="block text-sm font-bold text-white mb-3">
                           Last Name *
                         </label>
                         <Input
                           placeholder="Enter your last name"
                           required
-                          className="h-12 border-2 border-gray-300 focus:border-gold-400"
+                          className="h-12 border-2 border-slate-600/50 bg-slate-700/50 backdrop-blur-sm text-white focus:border-orange-400"
                         />
                       </div>
                     </div>
-
                     <div>
-                      <label className="block text-sm font-bold text-navy-900 mb-3">
+                      <label className="block text-sm font-bold text-white mb-3">
                         Email Address *
                       </label>
                       <Input
                         type="email"
                         placeholder="Enter your email address"
                         required
-                        className="h-12 border-2 border-gray-300 focus:border-gold-400"
+                        className="h-12 border-2 border-slate-600/50 bg-slate-700/50 backdrop-blur-sm text-white focus:border-orange-400"
                       />
                     </div>
-
                     <div>
-                      <label className="block text-sm font-bold text-navy-900 mb-3">
+                      <label className="block text-sm font-bold text-white mb-3">
                         Phone Number *
                       </label>
                       <Input
                         type="tel"
                         placeholder="Enter your phone number"
                         required
-                        className="h-12 border-2 border-gray-300 focus:border-gold-400"
+                        className="h-12 border-2 border-slate-600/50 bg-slate-700/50 backdrop-blur-sm text-white focus:border-orange-400"
                       />
                     </div>
-
                     <div>
-                      <label className="block text-sm font-bold text-navy-900 mb-3">
+                      <label className="block text-sm font-bold text-white mb-3">
                         Service Required
                       </label>
-                      <select className="w-full h-12 p-4 border-2 border-gray-300 rounded-md focus:ring-2 focus:ring-gold-400 focus:border-gold-400 bg-white">
+                      <select className="w-full h-12 p-4 border-2 border-slate-600/50 rounded-md focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-slate-700/50 backdrop-blur-sm text-white">
                         <option value="">Select a service</option>
                         <option value="personal-security">
                           Personal Security
@@ -1502,20 +1560,18 @@ export default function HomePage() {
                         <option value="other">Other Services</option>
                       </select>
                     </div>
-
                     <div>
-                      <label className="block text-sm font-bold text-navy-900 mb-3">
+                      <label className="block text-sm font-bold text-white mb-3">
                         Message *
                       </label>
                       <Textarea
                         placeholder="Tell us about your security requirements and how we can help you..."
-                        rows={5}
+                        rows={4}
                         required
-                        className="border-2 border-gray-300 focus:border-gold-400 resize-none"
+                        className="border-2 border-slate-600/50 bg-slate-700/50 backdrop-blur-sm text-white focus:border-orange-400 resize-none"
                       />
                     </div>
-
-                    <Button className="w-full  hover:bg-navy-800 text-white font-bold text-lg py-4 h-auto">
+                    <Button className="w-full bg-gradient-to-r from-orange-400 to-orange-600 text-white font-bold py-4 h-auto">
                       Send Message
                       <ArrowRight className="ml-3 h-6 w-6" />
                     </Button>
@@ -1524,21 +1580,36 @@ export default function HomePage() {
               </Card>
             </div>
           </div>
+          {/* Enhanced Map */}
+          <div className="mt-12 rounded-2xl overflow-hidden shadow-2xl">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3767.021035605792!2d73.03910447520941!3d19.237914982000266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTnCsDE0JzE2LjUiTiA3M8KwMDInMzAuMSJF!5e0!3m2!1sen!2sin!4v1752486804312!5m2!1sen!2sin"
+              width="100%"
+              height="400"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="rounded-2xl"
+            ></iframe>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className=" text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <footer className="bg-slate-800 text-white py-16 border-t border-slate-600/50">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
             <div>
               <div className="flex items-center space-x-4 mb-8">
-                <div className="bg-gold-400 p-2 rounded-full">
-                  <Shield className="h-8 w-8 text-navy-900" />
+                <div className="bg-gradient-to-r from-orange-400 to-orange-600 p-2 rounded-full">
+                  <Shield className="h-8 w-8 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold">EASS SECURITY</h3>
-                  <p className="text-sm text-gold-400 font-medium">
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                    EASS SECURITY
+                  </h3>
+                  <p className="text-sm text-orange-400 font-medium">
                     SERVICES PVT. LTD.
                   </p>
                 </div>
@@ -1549,28 +1620,27 @@ export default function HomePage() {
                 professional integrity.
               </p>
               <div className="flex space-x-4">
-                <div className="w-12 h-12 bg-gold-400 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors cursor-pointer">
-                  <span className="text-navy-900 font-bold text-lg">f</span>
+                <div className="w-12 h-12 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full flex items-center justify-center hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                  <span className="text-white font-bold text-lg">f</span>
                 </div>
-                <div className="w-12 h-12 bg-gold-400 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors cursor-pointer">
-                  <span className="text-navy-900 font-bold text-lg">t</span>
+                <div className="w-12 h-12 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full flex items-center justify-center hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                  <span className="text-white font-bold text-lg">t</span>
                 </div>
-                <div className="w-12 h-12 bg-gold-400 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors cursor-pointer">
-                  <span className="text-navy-900 font-bold text-lg">in</span>
+                <div className="w-12 h-12 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full flex items-center justify-center hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                  <span className="text-white font-bold text-lg">in</span>
                 </div>
-                <div className="w-12 h-12 bg-gold-400 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors cursor-pointer">
-                  <span className="text-navy-900 font-bold text-lg">ig</span>
+                <div className="w-12 h-12 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full flex items-center justify-center hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                  <span className="text-white font-bold text-lg">ig</span>
                 </div>
               </div>
             </div>
-
             <div>
               <h4 className="text-xl font-bold mb-6">Quick Links</h4>
               <ul className="space-y-3">
                 <li>
                   <Link
                     href="#home"
-                    className="text-gray-300 hover:text-gold-400 transition-colors text-lg"
+                    className="text-gray-300 hover:text-orange-400 transition-colors"
                   >
                     Home
                   </Link>
@@ -1578,7 +1648,7 @@ export default function HomePage() {
                 <li>
                   <Link
                     href="#about"
-                    className="text-gray-300 hover:text-gold-400 transition-colors text-lg"
+                    className="text-gray-300 hover:text-orange-400 transition-colors"
                   >
                     About Us
                   </Link>
@@ -1586,7 +1656,7 @@ export default function HomePage() {
                 <li>
                   <Link
                     href="#services"
-                    className="text-gray-300 hover:text-gold-400 transition-colors text-lg"
+                    className="text-gray-300 hover:text-orange-400 transition-colors"
                   >
                     Our Services
                   </Link>
@@ -1594,7 +1664,7 @@ export default function HomePage() {
                 <li>
                   <Link
                     href="#gallery"
-                    className="text-gray-300 hover:text-gold-400 transition-colors text-lg"
+                    className="text-gray-300 hover:text-orange-400 transition-colors"
                   >
                     Gallery
                   </Link>
@@ -1602,29 +1672,20 @@ export default function HomePage() {
                 <li>
                   <Link
                     href="#contact"
-                    className="text-gray-300 hover:text-gold-400 transition-colors text-lg"
+                    className="text-gray-300 hover:text-orange-400 transition-colors"
                   >
                     Contact Us
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="text-gray-300 hover:text-gold-400 transition-colors text-lg"
-                  >
-                    Careers
-                  </Link>
-                </li>
               </ul>
             </div>
-
             <div>
               <h4 className="text-xl font-bold mb-6">Our Services</h4>
               <ul className="space-y-3">
                 <li>
                   <Link
                     href="#"
-                    className="text-gray-300 hover:text-gold-400 transition-colors text-lg"
+                    className="text-gray-300 hover:text-orange-400 transition-colors"
                   >
                     Personal Security
                   </Link>
@@ -1632,7 +1693,7 @@ export default function HomePage() {
                 <li>
                   <Link
                     href="#"
-                    className="text-gray-300 hover:text-gold-400 transition-colors text-lg"
+                    className="text-gray-300 hover:text-orange-400 transition-colors"
                   >
                     Corporate Security
                   </Link>
@@ -1640,7 +1701,7 @@ export default function HomePage() {
                 <li>
                   <Link
                     href="#"
-                    className="text-gray-300 hover:text-gold-400 transition-colors text-lg"
+                    className="text-gray-300 hover:text-orange-400 transition-colors"
                   >
                     Investigation Services
                   </Link>
@@ -1648,7 +1709,7 @@ export default function HomePage() {
                 <li>
                   <Link
                     href="#"
-                    className="text-gray-300 hover:text-gold-400 transition-colors text-lg"
+                    className="text-gray-300 hover:text-orange-400 transition-colors"
                   >
                     CCTV Installation
                   </Link>
@@ -1656,7 +1717,7 @@ export default function HomePage() {
                 <li>
                   <Link
                     href="#"
-                    className="text-gray-300 hover:text-gold-400 transition-colors text-lg"
+                    className="text-gray-300 hover:text-orange-400 transition-colors"
                   >
                     Verification Services
                   </Link>
@@ -1664,64 +1725,102 @@ export default function HomePage() {
                 <li>
                   <Link
                     href="#"
-                    className="text-gray-300 hover:text-gold-400 transition-colors text-lg"
+                    className="text-gray-300 hover:text-orange-400 transition-colors"
                   >
                     VIP Protection
                   </Link>
                 </li>
               </ul>
             </div>
-
             <div>
               <h4 className="text-xl font-bold mb-6">Contact Info</h4>
               <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Phone className="h-5 w-5 text-gold-400" />
-                  <span className="text-gray-300 text-lg">
-                    +91 94251 73194
+                <a
+                  href={`tel:${contactNumbers.primary}`}
+                  className="flex items-center space-x-3 hover:text-orange-400 transition-colors"
+                >
+                  <Phone className="h-5 w-5 text-orange-400 flex-shrink-0" />
+                  <span className="text-gray-300">
+                    {contactNumbers.primary}
                   </span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Mail className="h-5 w-5 text-gold-400" />
-                  <span className="text-gray-300 text-lg">
-                    easssatna@gmail.com
+                </a>
+                <a
+                  href={`tel:${contactNumbers.secondary}`}
+                  className="flex items-center space-x-3 hover:text-orange-400 transition-colors"
+                >
+                  <Phone className="h-5 w-5 text-orange-400 flex-shrink-0" />
+                  <span className="text-gray-300">
+                    {contactNumbers.secondary}
                   </span>
-                </div>
+                </a>
+                <a
+                  href="mailto:eassgroupofficial@gmail.com"
+                  className="flex items-center space-x-3 hover:text-orange-400 transition-colors"
+                >
+                  <Mail className="h-5 w-5 text-orange-400 flex-shrink-0" />
+                  <span className="text-gray-300 text-[15px] sm:text-sm">
+                    eassgroupofficial@gmail.com
+                  </span>
+                </a>
                 <div className="flex items-start space-x-3">
-                  <MapPin className="h-5 w-5 text-gold-400 mt-1" />
+                  <MapPin className="h-5 w-5 text-orange-400 mt-1 flex-shrink-0" />
                   <span className="text-gray-300 text-sm">
-                    RK ROYAL CITY Building no -B<br/> Gala no. B105 near union bank
-                      <br/>Village -Mankoli taluka bhiwandi<br/> dist- Thane -421302
+                    RK ROYAL CITY Building no -B
+                    <br /> Gala no. B05 near union bank
+                    <br />
+                    Village -Mankoli taluka bhiwandi
+                    <br /> dist- Thane -421302
                   </span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Clock className="h-5 w-5 text-gold-400" />
-                  <span className="text-gray-300 text-lg">24/7 Support</span>
-                </div>
-              </div>
-
-              {/* Newsletter Signup */}
-              <div className="mt-8">
-                <h5 className="font-bold mb-4">Stay Updated</h5>
-                <div className="flex">
-                  <Input
-                    placeholder="Your email"
-                    className="rounded-r-none border-gray-600 bg-gray-800 text-white"
-                  />
-                  <Button className="rounded-l-none bg-gold-400 hover:bg-gold-500 text-navy-900">
-                    Subscribe
-                  </Button>
+                  <Clock className="h-5 w-5 text-orange-400 flex-shrink-0" />
+                  <span className="text-gray-300">24/7 Support</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="border-t border-gray-700 mt-12 pt-8">
+          {/* Social Media & Copyright */}
+          <div className="border-t border-white mt-8 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
-              <p className="text-gray-300 text-lg">
-                &copy; {new Date().getFullYear()}  BeanGate IT Solution | Powered by BeanGate IT Solution
-              </p>
-             
+              <div className="text-sm text-gray-400 mb-4 md:mb-0">
+                © {new Date().getFullYear()} All rights reserved. Designed and
+                Developed by
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-orange-400 font-semibold hover:underline ml-1"
+                  href="https://beangates.com/"
+                >
+                  Beangate IT Solutions, Bhopal
+                </Link>
+              </div>
+              {/* <div className="flex space-x-4">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+            </div> */}
             </div>
           </div>
         </div>
